@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Art Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffd93d 0%, #ffb830 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #ff9800;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #f57c00;
+            font-size: 1.3em;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #636e72;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #ffd93d 0%, #ffb830 100%);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .intro-section {
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5em;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .intro-section h2 {
+            color: #ff9800;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .intro-section p {
+            color: #636e72;
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .fun-facts {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .fun-facts h3 {
+            color: #f57c00;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .fun-facts ul {
+            list-style: none;
+        }
+
+        .fun-facts li {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            color: #2d3436;
+            font-size: 1.1em;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .art-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .art-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .art-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #ffeaa7, #fab1a0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            border-bottom: 5px solid #ff9800;
+        }
+
+        .art-info {
+            padding: 20px;
+        }
+
+        .art-title {
+            color: #2d3436;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .art-description {
+            color: #636e72;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            color: #ff9800;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #74b9ff, #a29bfe);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-card h3 {
+            color: white;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p {
+            color: white;
+            font-size: 1.2em;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            background: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            color: #ff9800;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            margin-top: 30px;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-btn {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 My Art Gallery 🖌️</h1>
+            <p class="subtitle">Welcome to My Creative World!</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="showTab('about')">👋 About Me</button>
+            <button class="tab-btn" onclick="showTab('artwork')">🎨 My Artwork</button>
+            <button class="tab-btn" onclick="showTab('contact')">📧 Contact</button>
+        </div>
+
+        <div id="about" class="tab-content active">
+            <div class="intro-section">
+                <div class="profile-pic">😊</div>
+                <h2>Hi, I'm [Your Name]!</h2>
+                <p>Welcome to my art gallery! I'm a young artist who loves creating colorful and imaginative artwork. Art is my favorite way to express myself and share my ideas with the world!</p>
+                <p>I've been making art since I was very little, and I love trying new styles and techniques. Every piece tells a story, and I hope my artwork makes you smile!</p>
+                
+                <div class="fun-facts">
+                    <h3>✨ Fun Facts About Me ✨</h3>
+                    <ul>
+                        <li>🎨 Favorite art supply: Colorful markers and paint!</li>
+                        <li>🌈 Favorite things to draw: Animals, nature, and fantasy creatures</li>
+                        <li>📚 Grade: [Your Grade]</li>
+                        <li>⭐ Dream: To become a famous artist one day!</li>
+                        <li>🎭 Hobbies: Drawing, painting, reading, and playing outside</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="artwork" class="tab-content">
+            <h2 style="text-align: center; color: #ff9800; font-size: 2.5em; margin-bottom: 30px;">My Amazing Artwork</h2>
+            
+            <div style="text-align: center; margin-bottom: 30px;">
+                <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+                <button onclick="document.getElementById('imageUpload').click()" style="background: linear-gradient(135deg, #ffd93d 0%, #ffb830 100%); color: white; border: none; padding: 15px 30px; font-size: 1.2em; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 5px 15px rgba(255, 184, 48, 0.4);">
+                    📸 Upload New Artwork
+                </button>
+            </div>
+            
+            <div class="gallery" id="artGallery">
+                <div class="art-card">
+                    <div class="art-image" style="background: linear-gradient(45deg, #ffeaa7, #fab1a0);">
+                        🌈
+                    </div>
+                    <div class="art-info">
+                        <div class="art-title">Rainbow Dreams</div>
+                        <div class="art-description">A colorful rainbow painting with bright colors and happy clouds!</div>
+                    </div>
+                </div>
+
+                <div class="art-card">
+                    <div class="art-image" style="background: linear-gradient(45deg, #74b9ff, #a29bfe);">
+                        🦋
+                    </div>
+                    <div class="art-info">
+                        <div class="art-title">Butterfly Garden</div>
+                        <div class="art-description">Beautiful butterflies flying in a magical garden full of flowers.</div>
+                    </div>
+                </div>
+
+                <div class="art-card">
+                    <div class="art-image" style="background: linear-gradient(45deg, #55efc4, #81ecec);">
+                        🐠
+                    </div>
+                    <div class="art-info">
+                        <div class="art-title">Under the Sea</div>
+                        <div class="art-description">An underwater adventure with colorful fish and coral reefs!</div>
+                    </div>
+                </div>
+
+                <div class="art-card">
+                    <div class="art-image" style="background: linear-gradient(45deg, #fd79a8, #fdcb6e);">
+                        🌸
+                    </div>
+                    <div class="art-info">
+                        <div class="art-title">Spring Flowers</div>
+                        <div class="art-description">A beautiful bouquet of spring flowers in full bloom.</div>
+                    </div>
+                </div>
+
+                <div class="art-card">
+                    <div class="art-image" style="background: linear-gradient(45deg, #e17055, #fdcb6e);">
+                        🦁
+                    </div>
+                    <div class="art-info">
+                        <div class="art-title">Safari Adventure</div>
+                        <div class="art-description">Wild animals on an exciting safari adventure in Africa!</div>
+                    </div>
+                </div>
+
+                <div class="art-card">
+                    <div class="art-image" style="background: linear-gradient(45deg, #6c5ce7, #a29bfe);">
+                        🌙
+                    </div>
+                    <div class="art-info">
+                        <div class="art-title">Starry Night</div>
+                        <div class="art-description">A magical night sky filled with twinkling stars and a bright moon.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact" class="tab-content">
+            <div class="contact-section">
+                <h2>Get In Touch! 📬</h2>
+                <p style="color: #636e72; font-size: 1.2em; margin-bottom: 30px;">I'd love to hear from you! Feel free to reach out with questions or just to say hi!</p>
+                
+                <div class="contact-info">
+                    <div class="contact-card" style="background: linear-gradient(135deg, #ffeaa7, #fab1a0);">
+                        <h3>📧 Email</h3>
+                        <p>myart@email.com</p>
+                    </div>
+                    
+                    <div class="contact-card" style="background: linear-gradient(135deg, #74b9ff, #a29bfe);">
+                        <h3>📍 Location</h3>
+                        <p>[Your City, State]</p>
+                    </div>
+                    
+                    <div class="contact-card" style="background: linear-gradient(135deg, #55efc4, #81ecec);">
+                        <h3>🎨 Art Classes</h3>
+                        <p>[Your School Name]</p>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="#" class="social-btn">📸 Instagram</a>
+                    <a href="#" class="social-btn">🎨 Art Portfolio</a>
+                    <a href="#" class="social-btn">💌 Send Message</a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>✨ Keep creating amazing art! ✨</p>
+        </footer>
+    </div>
+
+    <script>
+        // Default artwork
+        const defaultArtwork = [
+            { emoji: '🌈', title: 'Rainbow Dreams', description: 'A colorful rainbow painting with bright colors and happy clouds!', gradient: 'linear-gradient(45deg, #ffeaa7, #fab1a0)' },
+            { emoji: '🦋', title: 'Butterfly Garden', description: 'Beautiful butterflies flying in a magical garden full of flowers.', gradient: 'linear-gradient(45deg, #74b9ff, #a29bfe)' },
+            { emoji: '🐠', title: 'Under the Sea', description: 'An underwater adventure with colorful fish and coral reefs!', gradient: 'linear-gradient(45deg, #55efc4, #81ecec)' },
+            { emoji: '🌸', title: 'Spring Flowers', description: 'A beautiful bouquet of spring flowers in full bloom.', gradient: 'linear-gradient(45deg, #fd79a8, #fdcb6e)' },
+            { emoji: '🦁', title: 'Safari Adventure', description: 'Wild animals on an exciting safari adventure in Africa!', gradient: 'linear-gradient(45deg, #e17055, #fdcb6e)' },
+            { emoji: '🌙', title: 'Starry Night', description: 'A magical night sky filled with twinkling stars and a bright moon.', gradient: 'linear-gradient(45deg, #6c5ce7, #a29bfe)' }
+        ];
+
+        let artworkData = [];
+
+        function loadArtwork() {
+            const stored = localStorage.getItem('artworkGallery');
+            artworkData = stored ? JSON.parse(stored) : defaultArtwork;
+            displayArtwork();
+        }
+
+        function saveArtwork() {
+            localStorage.setItem('artworkGallery', JSON.stringify(artworkData));
+        }
+
+        function displayArtwork() {
+            const gallery = document.getElementById('artGallery');
+            gallery.innerHTML = '';
+            
+            artworkData.forEach((art, index) => {
+                const card = document.createElement('div');
+                card.className = 'art-card';
+                
+                const imageDiv = document.createElement('div');
+                imageDiv.className = 'art-image';
+                
+                if (art.image) {
+                    imageDiv.style.backgroundImage = `url(${art.image})`;
+                    imageDiv.style.backgroundSize = 'cover';
+                    imageDiv.style.backgroundPosition = 'center';
+                } else {
+                    imageDiv.style.background = art.gradient;
+                    imageDiv.textContent = art.emoji;
+                }
+                
+                const infoDiv = document.createElement('div');
+                infoDiv.className = 'art-info';
+                infoDiv.innerHTML = `
+                    <div class="art-title">${art.title}</div>
+                    <div class="art-description">${art.description}</div>
+                    <button onclick="editArtwork(${index})" style="margin-top: 10px; margin-right: 10px; padding: 8px 15px; background: #ff9800; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9em;">✏️ Edit</button>
+                    <button onclick="deleteArtwork(${index})" style="margin-top: 10px; padding: 8px 15px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9em;">🗑️ Delete</button>
+                `;
+                
+                card.appendChild(imageDiv);
+                card.appendChild(infoDiv);
+                gallery.appendChild(card);
+            });
+        }
+
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const title = prompt('Enter a title for your artwork:', 'My New Artwork');
+                    const description = prompt('Enter a description:', 'This is my amazing artwork!');
+                    
+                    if (title && description) {
+                        artworkData.push({
+                            image: e.target.result,
+                            title: title,
+                            description: description
+                        });
+                        saveArtwork();
+                        displayArtwork();
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function editArtwork(index) {
+            const art = artworkData[index];
+            const newTitle = prompt('Edit title:', art.title);
+            const newDescription = prompt('Edit description:', art.description);
+            
+            if (newTitle && newDescription) {
+                artworkData[index].title = newTitle;
+                artworkData[index].description = newDescription;
+                saveArtwork();
+                displayArtwork();
+            }
+        }
+
+        function deleteArtwork(index) {
+            if (confirm('Are you sure you want to delete this artwork?')) {
+                artworkData.splice(index, 1);
+                saveArtwork();
+                displayArtwork();
+            }
+        }
+
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-btn');
+            
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        window.onload = loadArtwork;
+    </script>
+</body>
+</html>
