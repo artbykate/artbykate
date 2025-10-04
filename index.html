@@ -333,6 +333,9 @@
                     📸 Upload New Artwork
                 </button>
             </div>
+            
+            <div class="gallery" id="artGallery"></div>
+        </div>
         
         <div id="contact" class="tab-content">
             <div class="contact-section">
@@ -372,14 +375,13 @@
     <script>
         // Default artwork
         const defaultArtwork = [
-                { image: 'KatePikaSep2025.jpg', title: 'Pika and friends', description: 'This is my Sep 2024\'s painting of Pikachu and her friends having fun outside! I used lots of colors because they make me happy!' },
-                { image: 'Artwork1-wolf.jpg', title: 'Kate\'s oil pastel work', description: 'This is my wolf! I made it with black oil pastels. I wanted it to look strong and cool, with shiny eyes and fluffy fur!' },
-                { image: 'Artwork2-lemontree.jpg', title: 'Kate\'s Taste of Summer', description: 'This is my lemon tree with bright yellow lemons hanging from green branches. The sunlight makes the lemons shine, and the tree looks full of life and happiness.' },
-                { image: 'Artwork3-Tulip.jpg', title: 'Kate\'s Tulips', description: 'Look at my tulips. They are made with oil pastels, bursting with color and soft blends that make the petals glow like sunshine on a spring morning.' },
-                { image: 'Artwork3-Tulip.jpg', title: 'Kate\'s Tulips', description: 'A modern artwork made with colorful paper cuts and part of my portrait, mixing shapes, textures, and pieces of me to show creativity and imagination in a fun new way.
-' },
-                { image: 'artwork6-tagowon.jpg', title: 'Guess who won the Olympics', description: 'I think this should make the yearbook!' }
-        ];
+    { image: 'KatePikaSep2025.jpg', title: 'Pika and friends', description: 'This is my Sep 2024\'s painting of Pikachu and her friends having fun outside! I used lots of colors because they make me happy!' },
+    { image: 'Artwork1-wolf.jpg', title: 'Kate\'s oil pastel work', description: 'This is my wolf! I made it with black oil pastels. I wanted it to look strong and cool, with shiny eyes and fluffy fur!' },
+    { image: 'Artwork2-lemontree.jpg', title: 'Kate\'s Taste of Summer', description: 'This is my lemon tree with bright yellow lemons hanging from green branches. The sunlight makes the lemons shine, and the tree looks full of life and happiness.' },
+    { image: 'Artwork3-Tulip.jpg', title: 'Kate\'s Tulips', description: 'Look at my tulips. They are made with oil pastels, bursting with color and soft blends that make the petals glow like sunshine on a spring morning.' },
+    { image: 'artwork5-modernart.jpg', title: 'Scissorhands', description: 'A modern artwork made with colorful paper cuts and part of my portrait, mixing shapes, textures, and pieces of me to show creativity and imagination in a fun new way.' },
+    { image: 'artwork6-tagowon.jpg', title: 'Guess who won the Olympics', description: 'I think this should make the yearbook!' }
+];
         let artworkData = [];
 
         function loadArtwork() {
