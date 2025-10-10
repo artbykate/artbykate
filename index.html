@@ -232,13 +232,13 @@
         }
 
         .contact-card h3 {
-            color: white;
+            color: #2d3436;
             font-size: 1.8em;
             margin-bottom: 10px;
         }
 
         .contact-card p {
-            color: white;
+            color: #2d3436;
             font-size: 1.2em;
         }
 
@@ -260,11 +260,21 @@
             font-weight: bold;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            display: inline-block;
         }
 
         .social-btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-btn.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .social-btn.disabled:hover {
+            transform: none;
         }
 
         footer {
@@ -306,7 +316,7 @@
 
         <div id="about" class="tab-content active">
             <div class="intro-section">
-                <div class="profile-pic" style="background-image: url('KatePhoto.jpg'); background-size: cover; background-position: center; font-size: 0;">😊</div>                
+                <div class="profile-pic" style="background-image: url('KatePhoto.jpg'); background-size: cover; background-position: center;">😊</div>                
                 <h2>Hi, I'm Kate Lu!</h2>
                 <p>Welcome to my art gallery! I'm a young artist who loves creating colorful and imaginative artwork. Art is my favorite way to express myself and share my ideas with the world!</p>
                 <p>I've been making art since I was 2 years old, and I love drawing animals, cartoon figures, and all kinds of exciting things around me! Every piece tells a story, and I hope my artwork makes you smile!</p>
@@ -316,7 +326,7 @@
                     <ul>
                         <li>🎨 Favorite art supply: Colorful markers and paint!</li>
                         <li>🌈 Favorite things to draw: Pikachu, animals, nature, and fantasy creatures</li>
-                        <li>📚 Grade: Grade 1 in September 2025</li>
+                        <li>📚 Grade: Grade 1</li>
                         <li>⭐ Dream: To become a Pokemon trainer one day even though they are not real!</li>
                         <li>🎭 Hobbies: Drawing, painting, reading, and playing outside</li>
                     </ul>
@@ -330,35 +340,36 @@
             <div class="gallery" id="artGallery"></div>
         </div>
         
-   <div id="contact" class="tab-content">
-    <div class="contact-section">
-        <h2>Get In Touch! 📬</h2>
-        <p style="color: #636e72; font-size: 1.2em; margin-bottom: 30px;">I'd love to hear from you! Feel free to reach out with questions or just to say hi!</p>
-        
-        <div class="contact-info">
-            <div class="contact-card" style="background: linear-gradient(135deg, #fff700, #ffdd00);">
-                <h3 style="color: black;">📧 Email</h3>
-                <p style="color: black;">pikalover63@gmail.com</p>
-            </div>
-           
-            <div class="contact-card" style="background: linear-gradient(135deg, #74b9ff, #a29bfe);">
-                <h3 style="color: black;">📍 Location</h3>
-                <p style="color: black;">Fort Worth, TX, U.S.A.</p>
-            </div>
-            
-            <div class="contact-card" style="background: linear-gradient(135deg, #55efc4, #81ecec);">
-                <h3 style="color: black;">🎨 Art Classes</h3>
-                <p style="color: black;">MYT Art Studio & Tanglewood Elementary School</p>
+        <div id="contact" class="tab-content">
+            <div class="contact-section">
+                <h2>Get In Touch! 📬</h2>
+                <p style="color: #636e72; font-size: 1.2em; margin-bottom: 30px;">I'd love to hear from you! Feel free to reach out with questions or just to say hi!</p>
+                
+                <div class="contact-info">
+                    <div class="contact-card" style="background: linear-gradient(135deg, #fff700, #ffdd00);">
+                        <h3>📧 Email</h3>
+                        <p>pikalover63@gmail.com</p>
+                    </div>
+                   
+                    <div class="contact-card" style="background: linear-gradient(135deg, #74b9ff, #a29bfe);">
+                        <h3>📍 Location</h3>
+                        <p>Fort Worth, TX, U.S.A.</p>
+                    </div>
+                    
+                    <div class="contact-card" style="background: linear-gradient(135deg, #55efc4, #81ecec);">
+                        <h3>🎨 Art Classes</h3>
+                        <p>MYT Art Studio & Tanglewood Elementary School</p>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <span class="social-btn disabled">📸 Instagram Coming Soon</span>
+                    <a href="mailto:pikalover63@gmail.com" class="social-btn">🎨 Request Art Portfolio</a>
+                    <a href="https://forms.gle/QvUEErBYP6z5dJHLA" target="_blank" class="social-btn">💌 Send Message</a>
+                </div>
             </div>
         </div>
-        
-        <div class="social-links">
-            <a href="#" class="social-btn">📸 Instagram Upcoming</a>
-            <a href="#" class="social-btn">🎨 Art Portfolio (contact me via email)</a>
-            <a href="https://forms.gle/QvUEErBYP6z5dJHLA" target="_blank" class="social-btn">💌 Send Message</a>
-        </div>
-    </div>
-</div>
+
         <footer>
             <p>✨ Keep creating amazing art! ✨</p>
         </footer>
@@ -366,14 +377,14 @@
 
     <script>
         const defaultArtwork = [
-            { image: 'KatePikaSep2025.jpg', title: 'Pika and friends', description: 'This is my Sep 2024\'s painting of Pikachu and her friends having fun outside! I used lots of colors because they make me happy!' },
+            { image: 'KatePikaSep2025.jpg', title: 'Pika and friends', description: 'This is my September 2025 painting of Pikachu and her friends having fun outside! I used lots of colors because they make me happy!' },
             { image: 'Artwork1-wolf.jpg', title: 'Kate\'s oil pastel work', description: 'This is my wolf! I made it with black oil pastels. I wanted it to look strong and cool, with shiny eyes and fluffy fur!' },
             { image: 'Artwork2-lemontree.jpg', title: 'Kate\'s Taste of Summer', description: 'This is my lemon tree with bright yellow lemons hanging from green branches. The sunlight makes the lemons shine, and the tree looks full of life and happiness.' },
             { image: 'Artwork3-Tulip.jpg', title: 'Kate\'s Tulips', description: 'Look at my tulips. They are made with oil pastels, bursting with color and soft blends that make the petals glow like sunshine on a spring morning.' },
             { image: 'artwork5-modernart.jpg', title: 'Scissorhands', description: 'A modern artwork made with colorful paper cuts and part of my portrait, mixing shapes, textures, and pieces of me to show creativity and imagination in a fun new way.' },
             { image: 'artwork6-tagowon.jpg', title: 'Guess Who Won the Olympics', description: 'I think this should make the yearbook!' },
             { image: 'Artwork7-madillionofpokemon.jpg', title: 'I Choose You', description: 'A Theme of Pokemons that are not rare but some of them are my favorite.' }
-     ];
+        ];
         
         let artworkData = defaultArtwork;
 
