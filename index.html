@@ -114,6 +114,29 @@
             justify-content: center;
             font-size: 5em;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+        
+        .profile-pic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+        
+        .profile-pic.has-photo::before {
+            background-image: var(--profile-photo);
+        }
+        
+        .emoji-overlay {
+            position: relative;
+            z-index: 2;
         }
 
         .intro-section h2 {
@@ -316,7 +339,7 @@
 
         <div id="about" class="tab-content active">
             <div class="intro-section">
-                <div class="profile-pic" style="background-image: url('KatePhoto.jpg'); background-size: cover; background-position: center;">😊</div>                
+                <div class="profile-pic has-photo" style="--profile-photo: url('KatePhoto.jpg');"></div>                
                 <h2>Hi, I'm Kate Lu!</h2>
                 <p>Welcome to my art gallery! I'm a young artist who loves creating colorful and imaginative artwork. Art is my favorite way to express myself and share my ideas with the world!</p>
                 <p>I've been making art since I was 2 years old, and I love drawing animals, cartoon figures, and all kinds of exciting things around me! Every piece tells a story, and I hope my artwork makes you smile!</p>
